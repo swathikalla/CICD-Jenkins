@@ -52,6 +52,22 @@ pipeline {
                 sh 'mvn package -DskipTests=true'
             }
         }
+
+        stage('Docker Build') {
+            steps {
+                script {
+                    echo 'Building Docker image...'
+                    try {
+                        sh 'docker build -t java-ci-demo:${BUILD_NUMBER} .'
+                        sh 'docker tag java-ci-demo:${BUILD_NUMBER} java-ci-demo:latest'
+                        echo 'Docker image built successfully!'
+                    } catch (Exception e) {
+                        echo 'Docker build skipped or failed. This is optional.'
+                        echo "Error: ${e.getMessage()}"
+                    }
+                }
+            }
+        }
     }
 
     post {
