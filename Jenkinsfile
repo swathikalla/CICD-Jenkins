@@ -11,9 +11,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking out source code from GitHub...'
-                // Jenkins automatically checks out the code from SCM when pipeline is configured
-                // This explicit checkout is optional but shown for clarity
-                checkout scm
+                // Explicitly clone from GitHub repository
+                git url: 'https://github.com/swathikalla/CICD-Jenkins.git', branch: 'main'
             }
         }
 
