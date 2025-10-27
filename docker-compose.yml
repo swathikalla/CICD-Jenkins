@@ -13,6 +13,7 @@ services:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
+      - ./Jenkinsfile:/var/jenkins_home/Jenkinsfile:ro
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=true
     restart: unless-stopped
