@@ -17,24 +17,7 @@ services:
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=true
     restart: unless-stopped
-    networks:
-      - cicd-network
-
-  java-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: java-ci-demo
-    ports:
-      - "8081:8080"
-    networks:
-      - cicd-network
-    restart: unless-stopped
 
 volumes:
   jenkins_home:
     driver: local
-
-networks:
-  cicd-network:
-    driver: bridge
